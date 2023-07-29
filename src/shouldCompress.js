@@ -1,8 +1,8 @@
 const isAnimated = require('is-animated')
 
 
-const MIN_COMPRESS_LENGTH = process.env.MIN_COMPRESS_LENGTH || 2048
-const MIN_TRANSPARENT_COMPRESS_LENGTH = MIN_COMPRESS_LENGTH * 50 //~100KB
+const MIN_COMPRESS_LENGTH = 512; // Adjust the minimum compress length as desired
+const MIN_TRANSPARENT_COMPRESS_LENGTH = MIN_COMPRESS_LENGTH * 100;
 const APNG_THRESH_LENGTH = MIN_COMPRESS_LENGTH * 100 //~200KB
 
 function shouldCompress(req, buffer) {
