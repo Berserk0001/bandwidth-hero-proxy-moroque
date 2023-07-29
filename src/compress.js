@@ -38,7 +38,7 @@ const cache = cacheMgr.caching({
 //})
 
 function compress(req, res, input) {
-    const format = 'webp'
+    const format = 'avif'
     const originType = req.params.originType
     const key = new URL(req.params.url) || ''
     const stats = sharp.cache();
@@ -57,14 +57,14 @@ function compress(req, res, input) {
                     (convErr) => {
                     if (convErr) console.error(convErr)
                     console.log('GIF Image converted!')
-                    fs.readFile(`${path}.webp`, (readErr, data) => {
+                    fs.readFile(`${path}.avif`, (readErr, data) => {
                         if(readErr) console.error(readErr);
                         if (readErr || res.headersSent) return redirect(req, res)
-                        setResponseHeaders(fs.statSync(`${path}.webp`), 'webp')
+                        setResponseHeaders(fs.statSync(`${path}.avif`), 'avif')
 
                         //initiate cleanup procedures
                         fs.unlink(`${path}.gif`, function () { })
-                        fs.unlink(`${path}.webp`, function () { })
+                        fs.unlink(`${path}.avif`, function () { })
 
 			res.write(data)
                         res.end()
